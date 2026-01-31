@@ -1,7 +1,7 @@
 # Donna JLS Website
 
 Lifestyle-focused product site for JEROSSE. Built with Next.js and exported as static files for Firebase Hosting.
-
+ok
 ## Local Development
 
 ```bash
