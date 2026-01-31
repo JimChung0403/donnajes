@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { productFaqs, productPriority, products } from "../../data/products";
 
 type PageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://donnajls.web.app";
@@ -13,8 +13,9 @@ export const dynamic = "force-static";
 export const generateStaticParams = async () =>
   products.map((product) => ({ slug: product.id }));
 
-export const generateMetadata = ({ params }: PageProps): Metadata => {
-  const product = products.find((item) => item.id === params.slug);
+export const generateMetadata = async ({ params }: PageProps): Promise<Metadata> => {
+  const { slug } = await params;
+  const product = products.find((item) => item.id === slug);
 
   if (!product) {
     return {
@@ -55,8 +56,9 @@ export const generateMetadata = ({ params }: PageProps): Metadata => {
   };
 };
 
-export default function ProductDetailPage({ params }: PageProps) {
-  const product = products.find((item) => item.id === params.slug);
+export default async function ProductDetailPage({ params }: PageProps) {
+  const { slug } = await params;
+  const product = products.find((item) => item.id === slug);
 
   if (!product) {
     notFound();
