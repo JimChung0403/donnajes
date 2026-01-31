@@ -41,6 +41,9 @@ const structuredData = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    icon: "/favicon.svg",
+  },
   title: {
     default: "婕樂纖厚焙奶茶｜瘦身健康奶茶飲料",
     template: "%s｜婕樂纖瘦身健康補給",
