@@ -182,7 +182,7 @@ export default function ProductDetailPage({ params }: PageProps) {
           <h2>推薦你也看看</h2>
           <div className="related-grid">
             {related.map((item) => (
-              <a key={item.id} className="related-card" href={`/products/${item.id}`}>
+              <a key={item.id} className="related-card" href={`/products/${item.id}/`}>
                 <div className="related-image">
                   <img
                     src={item.image}

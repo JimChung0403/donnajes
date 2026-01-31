@@ -66,7 +66,7 @@ export default function ProductsPage() {
               <div className="tag-row">
                 <span className="tag tag--soft">{product.tone}</span>
               </div>
-              <a className="btn primary" href={`/products/${product.id}`}>
+              <a className="btn primary" href={`/products/${product.id}/`}>
                 查看產品詳情
               </a>
             </div>

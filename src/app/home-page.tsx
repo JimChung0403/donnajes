@@ -307,7 +307,7 @@ export default function Home() {
       <section className="hero section section-delay-0" id="product">
         <div className="hero-content">
           <span className="eyebrow">瘦身健康奶茶飲料</span>
-          <h1>婕樂纖【厚焙奶茶】</h1>
+          <h1>輕卡肽纖飲（厚焙奶茶風味）</h1>
           <p className="lead">
             把日常補給變得柔和而有儀式感。溫潤厚焙口感，主打健康減重與
             瘦身節奏，讓忙碌生活也能維持輕盈體態。
@@ -603,7 +603,7 @@ export default function Home() {
                             reasons.map((reason) => <li key={reason}>{reason}</li>)
                           )}
                         </ul>
-                        <a className="btn primary" href={`/products/${product.id}`}>
+                        <a className="btn primary" href={`/products/${product.id}/`}>
                           查看產品詳情
                         </a>
                       </article>
@@ -652,7 +652,7 @@ export default function Home() {
           </div>
           <div className="section-actions">
             <div className="section-chip">精選 4 款</div>
-            <a className="btn ghost" href="/products">
+            <a className="btn ghost" href="/products/">
               看全部產品
             </a>
           </div>
@@ -686,7 +686,7 @@ export default function Home() {
                   ))}
                 </ul>
                 <p className="product-usage">{product.usage}</p>
-                <a className="btn ghost" href={`/products/${product.id}`}>
+                <a className="btn ghost" href={`/products/${product.id}/`}>
                   查看產品詳情
                 </a>
               </div>
