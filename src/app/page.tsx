@@ -289,8 +289,8 @@ export default function Home() {
     <main className="page">
       <header className="topbar">
         <div className="brand">
-          <span className="brand-mark">JEROSSE</span>
-          <span className="brand-sub">婕樂纖生活風格提案</span>
+          <span className="brand-mark">Donna</span>
+          <span className="brand-sub">Donna生活風格提案</span>
         </div>
         <nav className="topbar-links">
           <a href="#story">品牌故事</a>
