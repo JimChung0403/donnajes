@@ -420,6 +420,15 @@ export default function Home() {
               <span className="tag">溫柔補給</span>
               <span className="tag">安心成分</span>
             </div>
+            <div className="about-embed">
+              <iframe
+                title="Donna IG 影片"
+                src="https://www.instagram.com/p/DTc86-SkyjY/embed"
+                loading="lazy"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
             <div className="about-note">商品資訊以官方公告為準，若有疑問可私訊 Donna。</div>
             <div className="ig-link">官方導購：@donnabubu</div>
           </div>
