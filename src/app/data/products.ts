@@ -6,6 +6,7 @@ export type Product = {
   highlights: string[];
   usage: string;
   detail: string;
+  audience: string;
 };
 
 export const products: Product[] = [
@@ -16,7 +17,8 @@ export const products: Product[] = [
     image: "/products/peptide.jpg",
     highlights: ["高纖 · 高鈣 · 高維生素 C", "專利 D-核糖", "專利絲素肽"],
     usage: "建議每次一包、每天 1-2 次，可搭配 200-250cc 飲品。",
-    detail: "溫潤厚焙口感，適合取代含糖飲料的日常補給。",
+    detail: "溫潤厚焙口感，適合取代含糖飲料的健康奶茶補給。",
+    audience: "想以健康奶茶取代含糖飲料，兼顧瘦身與日常營養補給。",
   },
   {
     id: "digest",
@@ -26,6 +28,7 @@ export const products: Product[] = [
     highlights: ["維持消化道機能", "調整體質", "使排便順暢"],
     usage: "搭配足量水分補充，建立日常順暢節奏。",
     detail: "針對蔬菜攝取少、排便不規律的需求。",
+    audience: "外食多、蔬菜攝取少，想打造健康減重的順暢節奏。",
   },
   {
     id: "shape",
@@ -35,6 +38,7 @@ export const products: Product[] = [
     highlights: ["健字號：不易形成體脂肪", "健字號：調節血脂", "日常體態管理"],
     usage: "搭配飲食與運動習慣，持續維持體態。",
     detail: "外食或甜食頻率偏高時的管理方案。",
+    audience: "希望燃脂與體態管理更有感，並兼顧健康減重。",
   },
   {
     id: "metabo",
@@ -44,6 +48,7 @@ export const products: Product[] = [
     highlights: ["增加體力", "營養補給", "促進新陳代謝"],
     usage: "適合作息偏晚、活動量不足時補給。",
     detail: "幫助維持活力感與代謝節奏。",
+    audience: "作息偏晚、活動量不足，想增加代謝與燃脂節奏。",
   },
   {
     id: "probiotic",
@@ -53,6 +58,7 @@ export const products: Product[] = [
     highlights: ["補充益生菌", "調整體質", "幫助消化"],
     usage: "壓力大或作息亂時，做為日常保養選擇。",
     detail: "維持菌相平衡的穩定補充。",
+    audience: "壓力大作息亂，想用健康飲料搭配維持體態與順暢。",
   },
   {
     id: "snow",
@@ -62,6 +68,7 @@ export const products: Product[] = [
     highlights: ["清涼解渴", "健康維持", "促進新陳代謝"],
     usage: "想要清爽口感時可選擇替代含糖飲料。",
     detail: "清爽代謝感，適合日常補給。",
+    audience: "想以清爽飲料替代含糖飲品，增加代謝與燃脂感受。",
   },
 ];
 

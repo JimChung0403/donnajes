@@ -6,6 +6,8 @@ type PageProps = {
   params: { slug: string };
 };
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://donnajls.web.app";
+
 export const dynamic = "force-static";
 
 export const generateStaticParams = async () =>
@@ -22,8 +24,8 @@ export const generateMetadata = ({ params }: PageProps): Metadata => {
   }
 
   const title = `${product.name}｜${product.tone}`;
-  const description = `${product.detail} 查看產品亮點、使用建議與常見問題，並可私訊 Donna 了解更多。`;
-  const url = `/products/${product.id}`;
+  const description = `${product.detail} ${product.audience} 查看產品亮點、使用建議與常見問題，並可私訊 Donna 了解更多。`;
+  const url = `/products/${product.id}/`;
 
   return {
     title,
@@ -40,7 +42,7 @@ export const generateMetadata = ({ params }: PageProps): Metadata => {
           url: product.image,
           width: 1200,
           height: 630,
-          alt: `${product.name} 產品示意`,
+          alt: `${product.name} 瘦身健康飲料示意`,
         },
       ],
     },
@@ -66,6 +68,22 @@ export default function ProductDetailPage({ params }: PageProps) {
     .slice(0, 3);
 
   const faqs = productFaqs[product.id] ?? [];
+  const imageUrl = product.image.startsWith("http")
+    ? product.image
+    : `${siteUrl}${product.image}`;
+  const productSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    description: `${product.detail} ${product.audience}`,
+    image: [imageUrl],
+    sku: product.id,
+    brand: {
+      "@type": "Brand",
+      name: "婕樂纖",
+    },
+    url: `${siteUrl}/products/${product.id}/`,
+  };
   const faqSchema = faqs.length
     ? {
         "@context": "https://schema.org",
@@ -83,6 +101,10 @@ export default function ProductDetailPage({ params }: PageProps) {
 
   return (
     <main className="page product-detail">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}
+      />
       {faqSchema ? (
         <script
           type="application/ld+json"
@@ -109,7 +131,15 @@ export default function ProductDetailPage({ params }: PageProps) {
           </div>
         </div>
         <div className="detail-image">
-          <img src={product.image} alt={`${product.name} 產品示意`} />
+          <img
+            src={product.image}
+            alt={`${product.name} 瘦身健康飲料示意`}
+            width={2000}
+            height={2000}
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+          />
         </div>
       </header>
 
@@ -131,6 +161,10 @@ export default function ProductDetailPage({ params }: PageProps) {
 
       <section className="detail-section">
         <div className="detail-card">
+          <h2>適合誰</h2>
+          <p>{product.audience}</p>
+        </div>
+        <div className="detail-card">
           <h2>常見問題</h2>
           <div className="faq">
             {faqs.map((item) => (
@@ -141,13 +175,23 @@ export default function ProductDetailPage({ params }: PageProps) {
             ))}
           </div>
         </div>
+      </section>
+
+      <section className="detail-section">
         <div className="detail-card">
           <h2>推薦你也看看</h2>
           <div className="related-grid">
             {related.map((item) => (
               <a key={item.id} className="related-card" href={`/products/${item.id}`}>
                 <div className="related-image">
-                  <img src={item.image} alt={`${item.name} 產品示意`} />
+                  <img
+                    src={item.image}
+                    alt={`${item.name} 瘦身健康飲料示意`}
+                    width={2000}
+                    height={2000}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <div>
                   <p className="related-title">{item.name}</p>

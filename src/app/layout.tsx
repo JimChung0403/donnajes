@@ -16,18 +16,41 @@ const sans = Noto_Sans_TC({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://donnajls.web.app";
 
+const organizationSchema = {
+  "@type": "Organization",
+  name: "婕樂纖生活風格補給",
+  url: siteUrl,
+  sameAs: ["https://www.instagram.com/donnabubu/"],
+  logo: `${siteUrl}/host-donna.svg`,
+};
+
+const websiteSchema = {
+  "@type": "WebSite",
+  name: "婕樂纖生活風格補給",
+  url: siteUrl,
+  publisher: {
+    "@type": "Organization",
+    name: "婕樂纖生活風格補給",
+  },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [organizationSchema, websiteSchema],
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "婕樂纖厚焙奶茶｜生活風格健康補給",
-    template: "%s｜婕樂纖生活風格補給",
+    default: "婕樂纖厚焙奶茶｜瘦身健康奶茶飲料",
+    template: "%s｜婕樂纖瘦身健康補給",
   },
   description:
-    "以生活風格呈現婕樂纖厚焙奶茶的日常補給提案，導購至 Donna 的 IG 諮詢。",
+    "婕樂纖厚焙奶茶主打瘦身與健康減重的日常補給，以健康奶茶與飲料取代含糖飲品，導購至 Donna 的 IG 諮詢。",
   openGraph: {
-    title: "婕樂纖厚焙奶茶｜生活風格健康補給",
+    title: "婕樂纖厚焙奶茶｜瘦身健康奶茶飲料",
     description:
-      "以生活風格呈現婕樂纖厚焙奶茶的日常補給提案，導購至 Donna 的 IG 諮詢。",
+      "婕樂纖厚焙奶茶主打瘦身與健康減重的日常補給，以健康奶茶與飲料取代含糖飲品，導購至 Donna 的 IG 諮詢。",
     type: "website",
     url: "/",
     siteName: "婕樂纖生活風格補給",
@@ -36,15 +59,15 @@ export const metadata: Metadata = {
         url: "/products/peptide.jpg",
         width: 1200,
         height: 630,
-        alt: "婕樂纖厚焙奶茶 生活風格主打飲品",
+        alt: "婕樂纖厚焙奶茶 瘦身健康奶茶飲料",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "婕樂纖厚焙奶茶｜生活風格健康補給",
+    title: "婕樂纖厚焙奶茶｜瘦身健康奶茶飲料",
     description:
-      "以生活風格呈現婕樂纖厚焙奶茶的日常補給提案，導購至 Donna 的 IG 諮詢。",
+      "婕樂纖厚焙奶茶主打瘦身與健康減重的日常補給，以健康奶茶與飲料取代含糖飲品，導購至 Donna 的 IG 諮詢。",
     images: ["/products/peptide.jpg"],
   },
 };
@@ -56,7 +79,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-Hant" className={`${serif.variable} ${sans.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

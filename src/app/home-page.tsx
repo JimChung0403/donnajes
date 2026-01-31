@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { homeFaqs } from "./data/faqs";
 import { productPriority, products } from "./data/products";
 
 type Answers = Record<string, string>;
@@ -126,21 +127,6 @@ const testimonials = [
     name: "Iris",
     city: "台中",
     quote: "比起甜飲，厚焙奶茶更順口，也比較安心。",
-  },
-];
-
-const faqs = [
-  {
-    q: "怎麼購買？",
-    a: "點擊任一導購按鈕，直接前往 Donna 的 IG 私訊即可。",
-  },
-  {
-    q: "每天怎麼喝？",
-    a: "建議每次一包、每天 1-2 次，可搭配 200-250cc 飲品。",
-  },
-  {
-    q: "有沒有檢驗或認證？",
-    a: "官方資訊包含 SGS 檢驗合格、世界品質標章銅獎、32 大專利證書。",
   },
 ];
 
@@ -313,10 +299,11 @@ export default function Home() {
 
       <section className="hero section section-delay-0" id="product">
         <div className="hero-content">
-          <span className="eyebrow">生活風格主打飲品</span>
+          <span className="eyebrow">瘦身健康奶茶飲料</span>
           <h1>婕樂纖【厚焙奶茶】</h1>
           <p className="lead">
-            把日常補給變得柔和而有儀式感。溫潤厚焙口感，讓忙碌生活也能保持輕盈節奏。
+            把日常補給變得柔和而有儀式感。溫潤厚焙口感，主打健康減重與
+            瘦身節奏，讓忙碌生活也能維持輕盈體態。
           </p>
           <div className="hero-actions">
             <a
@@ -348,15 +335,23 @@ export default function Home() {
         </div>
         <div className="hero-media">
           <div className="hero-card">
-            <img src="/products/peptide.jpg" alt="婕樂纖厚焙奶茶產品示意" />
+            <img
+              src="/products/peptide.jpg"
+              alt="婕樂纖厚焙奶茶 瘦身健康奶茶產品示意"
+              width={2000}
+              height={2000}
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
           </div>
           <div className="hero-card hero-card--overlay">
-            <h3>適合 25-45 歲女性</h3>
+            <h3>適合想瘦身與健康減重的人</h3>
             <p>忙碌、重視體態與生活質感的你，想要更安心的日常補給。</p>
             <div className="tag-row">
-              <span className="tag">輕卡日常</span>
+              <span className="tag">瘦身日常</span>
               <span className="tag">溫潤口感</span>
-              <span className="tag">生活節奏</span>
+              <span className="tag">增加代謝</span>
             </div>
           </div>
         </div>
@@ -366,14 +361,21 @@ export default function Home() {
         <div className="section-header">
           <div>
             <h2>品牌故事</h2>
-            <p>以健康、安心、生活感為核心，打造妳每天都能持續的補給習慣。</p>
+            <p>以健康與瘦身節奏為核心，打造妳每天都能持續的補給習慣。</p>
           </div>
           <div className="section-chip">成長 · 創新 · 永續</div>
         </div>
         <div className="host-grid">
           <div className="host-card">
             <div className="host-photo">
-              <img src="/host/donna.jpg" alt="Donna 生活照" />
+              <img
+                src="/host/donna.jpg"
+                alt="Donna 生活照"
+                width={1080}
+                height={1080}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div className="host-meta">
               <div>
@@ -439,7 +441,7 @@ export default function Home() {
         <div className="section-header">
           <div>
             <h2>亮點特色</h2>
-            <p>更符合生活風格的補給內容，簡單、輕盈、好入口。</p>
+            <p>更符合瘦身與健康減重的補給內容，簡單、輕盈、好入口。</p>
           </div>
           <div className="section-chip">主打產品亮點</div>
         </div>
@@ -461,7 +463,7 @@ export default function Home() {
         <div className="section-header">
           <div>
             <h2>生活型態問券推薦</h2>
-            <p>7-8 題單選題，快速找到適合你的產品方向。</p>
+            <p>7-8 題單選題，快速找到適合你瘦身與健康減重的產品方向。</p>
           </div>
           <div className="section-chip">
             已完成 {answeredCount} / {totalQuestions}
@@ -563,7 +565,14 @@ export default function Home() {
                     return (
                       <article key={product.id} className="result-card">
                         <div className="result-image">
-                          <img src={product.image} alt={`${product.name} 產品示意`} />
+                          <img
+                            src={product.image}
+                            alt={`${product.name} 瘦身健康飲料示意`}
+                            width={2000}
+                            height={2000}
+                            loading="lazy"
+                            decoding="async"
+                          />
                         </div>
                         <h3>{product.name}</h3>
                         <p>{product.detail}</p>
@@ -594,7 +603,7 @@ export default function Home() {
         <div className="section-header">
           <div>
             <h2>生活節奏建議</h2>
-            <p>從早到晚的小儀式，讓補給融入你的生活節奏。</p>
+            <p>從早到晚的小儀式，讓瘦身與健康減重補給融入你的生活節奏。</p>
           </div>
           <div className="section-chip">1-2 次 / 日</div>
         </div>
@@ -612,7 +621,7 @@ export default function Home() {
         <div className="section-header">
           <div>
             <h2>產品詳情</h2>
-            <p>先從熱門產品開始了解，更多產品可進入完整列表。</p>
+            <p>先從熱門瘦身健康飲料開始了解，更多產品可進入完整列表。</p>
           </div>
           <div className="section-actions">
             <div className="section-chip">精選 4 款</div>
@@ -629,7 +638,14 @@ export default function Home() {
             .map((product) => (
             <article key={product.id} className="card product-card">
               <div className="product-image">
-                <img src={product.image} alt={`${product.name} 產品圖`} />
+                <img
+                  src={product.image}
+                  alt={`${product.name} 瘦身健康飲料產品圖`}
+                  width={2000}
+                  height={2000}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="product-body">
                 <h3>{product.name}</h3>
@@ -704,7 +720,7 @@ export default function Home() {
           <div className="section-chip">FAQ</div>
         </div>
         <div className="faq">
-          {faqs.map((item) => (
+          {homeFaqs.map((item) => (
             <details key={item.q} className="faq-item">
               <summary>{item.q}</summary>
               <p>{item.a}</p>
