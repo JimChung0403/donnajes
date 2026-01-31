@@ -1,0 +1,99 @@
+import { notFound } from "next/navigation";
+import { productFaqs, productPriority, products } from "../../data/products";
+
+type PageProps = {
+  params: { slug: string };
+};
+
+export const dynamic = "force-static";
+
+export const generateStaticParams = async () =>
+  products.map((product) => ({ slug: product.id }));
+
+export default function ProductDetailPage({ params }: PageProps) {
+  const product = products.find((item) => item.id === params.slug);
+
+  if (!product) {
+    notFound();
+  }
+
+  const related = products
+    .filter((item) => item.id !== product.id)
+    .sort((a, b) => productPriority.indexOf(a.id) - productPriority.indexOf(b.id))
+    .slice(0, 3);
+
+  const faqs = productFaqs[product.id] ?? [];
+
+  return (
+    <main className="page product-detail">
+      <header className="detail-hero">
+        <div>
+          <p className="eyebrow">產品詳情</p>
+          <h1>{product.name}</h1>
+          <p className="lead">{product.detail}</p>
+          <div className="tag-row">
+            <span className="tag">{product.tone}</span>
+            <span className="tag tag--soft">生活風格推薦</span>
+          </div>
+          <div className="detail-actions">
+            <a className="btn primary" href="https://www.instagram.com/donnabubu/" target="_blank" rel="noreferrer">
+              私訊 Donna 了解
+            </a>
+            <a className="btn ghost" href="/#details">
+              回到產品總覽
+            </a>
+          </div>
+        </div>
+        <div className="detail-image">
+          <img src={product.image} alt={`${product.name} 產品示意`} />
+        </div>
+      </header>
+
+      <section className="detail-section">
+        <div className="detail-card">
+          <h2>產品亮點</h2>
+          <ul>
+            {product.highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="detail-card">
+          <h2>使用建議</h2>
+          <p>{product.usage}</p>
+          <p className="detail-note">實際需求請依個人狀況調整，必要時諮詢專業人士。</p>
+        </div>
+      </section>
+
+      <section className="detail-section">
+        <div className="detail-card">
+          <h2>常見問題</h2>
+          <div className="faq">
+            {faqs.map((item) => (
+              <details key={item.q} className="faq-item">
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+        <div className="detail-card">
+          <h2>推薦你也看看</h2>
+          <div className="related-grid">
+            {related.map((item) => (
+              <a key={item.id} className="related-card" href={`/products/${item.id}`}>
+                <div className="related-image">
+                  <img src={item.image} alt={`${item.name} 產品示意`} />
+                </div>
+                <div>
+                  <p className="related-title">{item.name}</p>
+                  <p className="related-tone">{item.tone}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
