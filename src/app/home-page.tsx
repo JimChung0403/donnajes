@@ -274,16 +274,23 @@ export default function Home() {
   return (
     <main className="page">
       <header className="topbar">
-        <div className="brand">
-          <span className="brand-mark">Donna</span>
+        <a className="brand" href="/">
+          <img
+            className="brand-logo"
+            src="/logo.svg"
+            alt="Donna 婕樂纖厚焙奶茶 Logo"
+            width={200}
+            height={56}
+          />
           <span className="brand-sub">Donna生活風格提案</span>
-        </div>
+        </a>
         <nav className="topbar-links">
           <a href="#story">品牌故事</a>
           <a href="#product">主打奶茶</a>
           <a href="#benefits">亮點特色</a>
           <a href="#lifestyle-quiz">生活問券</a>
           <a href="#details">產品詳情</a>
+          <a href="#faq">問與答</a>
         </nav>
         <div className="topbar-actions">
           <a
@@ -440,7 +447,17 @@ export default function Home() {
       <section className="section section-delay-2" id="benefits">
         <div className="section-header">
           <div>
-            <h2>亮點特色</h2>
+            <div className="section-title">
+              <img
+                className="section-icon"
+                src="/icons/tea-heart.svg"
+                alt=""
+                width={28}
+                height={28}
+                aria-hidden="true"
+              />
+              <h2>亮點特色</h2>
+            </div>
             <p>更符合瘦身與健康減重的補給內容，簡單、輕盈、好入口。</p>
           </div>
           <div className="section-chip">主打產品亮點</div>
@@ -602,7 +619,17 @@ export default function Home() {
       <section className="section" id="routine">
         <div className="section-header">
           <div>
-            <h2>生活節奏建議</h2>
+            <div className="section-title">
+              <img
+                className="section-icon"
+                src="/icons/tea-heart.svg"
+                alt=""
+                width={28}
+                height={28}
+                aria-hidden="true"
+              />
+              <h2>生活節奏建議</h2>
+            </div>
             <p>從早到晚的小儀式，讓瘦身與健康減重補給融入你的生活節奏。</p>
           </div>
           <div className="section-chip">1-2 次 / 日</div>
@@ -714,7 +741,17 @@ export default function Home() {
       <section className="section" id="faq">
         <div className="section-header">
           <div>
-            <h2>常見問題</h2>
+            <div className="section-title">
+              <img
+                className="section-icon"
+                src="/icons/tea-heart.svg"
+                alt=""
+                width={28}
+                height={28}
+                aria-hidden="true"
+              />
+              <h2>常見問題</h2>
+            </div>
             <p>下單與使用方式的快速說明。</p>
           </div>
           <div className="section-chip">FAQ</div>

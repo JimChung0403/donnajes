@@ -130,8 +130,26 @@ p {
 }
 
 .brand {
-  display: grid;
-  gap: 2px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  text-decoration: none;
+}
+
+.brand:hover {
+  opacity: 0.9;
+}
+
+.brand:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-full);
+}
+
+.brand-logo {
+  width: 200px;
+  height: auto;
+  display: block;
 }
 
 .brand-mark {
@@ -233,6 +251,18 @@ p {
   justify-content: space-between;
   gap: var(--space-6);
   margin-bottom: var(--space-6);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.section-icon {
+  width: 28px;
+  height: 28px;
+  display: block;
 }
 
 .section-actions {
