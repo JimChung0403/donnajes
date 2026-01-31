@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { productFaqs, productPriority, products } from "../../data/products";
 
@@ -9,6 +10,48 @@ export const dynamic = "force-static";
 
 export const generateStaticParams = async () =>
   products.map((product) => ({ slug: product.id }));
+
+export const generateMetadata = ({ params }: PageProps): Metadata => {
+  const product = products.find((item) => item.id === params.slug);
+
+  if (!product) {
+    return {
+      title: "產品不存在",
+      description: "找不到對應的產品頁面。",
+    };
+  }
+
+  const title = `${product.name}｜${product.tone}`;
+  const description = `${product.detail} 查看產品亮點、使用建議與常見問題，並可私訊 Donna 了解更多。`;
+  const url = `/products/${product.id}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: url,
+    },
+    openGraph: {
+      title,
+      description,
+      url,
+      images: [
+        {
+          url: product.image,
+          width: 1200,
+          height: 630,
+          alt: `${product.name} 產品示意`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [product.image],
+    },
+  };
+};
 
 export default function ProductDetailPage({ params }: PageProps) {
   const product = products.find((item) => item.id === params.slug);
@@ -23,9 +66,30 @@ export default function ProductDetailPage({ params }: PageProps) {
     .slice(0, 3);
 
   const faqs = productFaqs[product.id] ?? [];
+  const faqSchema = faqs.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((item) => ({
+          "@type": "Question",
+          name: item.q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.a,
+          },
+        })),
+      }
+    : null;
 
   return (
     <main className="page product-detail">
+      {faqSchema ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      ) : null}
+
       <header className="detail-hero">
         <div>
           <p className="eyebrow">產品詳情</p>

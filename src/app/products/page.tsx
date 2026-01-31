@@ -1,4 +1,35 @@
+import type { Metadata } from "next";
 import { products } from "../data/products";
+
+export const metadata: Metadata = {
+  title: "產品總覽",
+  description:
+    "一次瀏覽婕樂纖全系列產品，快速了解各款特色與適用情境，並點擊查看詳細說明。",
+  alternates: {
+    canonical: "/products",
+  },
+  openGraph: {
+    title: "產品總覽｜婕樂纖生活風格補給",
+    description:
+      "一次瀏覽婕樂纖全系列產品，快速了解各款特色與適用情境，並點擊查看詳細說明。",
+    url: "/products",
+    images: [
+      {
+        url: "/products/peptide.jpg",
+        width: 1200,
+        height: 630,
+        alt: "婕樂纖產品總覽",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "產品總覽｜婕樂纖生活風格補給",
+    description:
+      "一次瀏覽婕樂纖全系列產品，快速了解各款特色與適用情境，並點擊查看詳細說明。",
+    images: ["/products/peptide.jpg"],
+  },
+};
 
 export default function ProductsPage() {
   return (
