@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Topbar from "@/components/Topbar";
 import { products } from "../data/products";
 
 export const metadata: Metadata = {
@@ -34,6 +35,8 @@ export const metadata: Metadata = {
 export default function ProductsPage() {
   return (
     <main className="page product-list">
+      <Topbar />
+
       <header className="section-header">
         <div>
           <h1>瘦身健康飲料產品總覽</h1>

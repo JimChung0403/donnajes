@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import Topbar from "@/components/Topbar";
 import { homeFaqs } from "./data/faqs";
 import { productPriority, products } from "./data/products";
 
@@ -273,36 +274,7 @@ export default function Home() {
 
   return (
     <main className="page">
-      <header className="topbar">
-        <a className="brand" href="/">
-          <img
-            className="brand-logo"
-            src="/logo.svg"
-            alt="Donna 婕樂纖厚焙奶茶 Logo"
-            width={200}
-            height={56}
-          />
-          <span className="brand-sub">Donna生活風格提案</span>
-        </a>
-        <nav className="topbar-links">
-          <a href="#story">品牌故事</a>
-          <a href="#product">主打奶茶</a>
-          <a href="#benefits">亮點特色</a>
-          <a href="#lifestyle-quiz">生活問券</a>
-          <a href="#details">產品詳情</a>
-          <a href="#faq">問與答</a>
-        </nav>
-        <div className="topbar-actions">
-          <a
-            className="btn ghost"
-            href="https://www.instagram.com/donnabubu/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            私訊 Donna
-          </a>
-        </div>
-      </header>
+      <Topbar />
 
       <section className="hero section section-delay-0" id="product">
         <div className="hero-content">
@@ -462,7 +434,7 @@ export default function Home() {
           </div>
           <div className="section-chip">主打產品亮點</div>
         </div>
-        <div className="grid">
+        <div className="grid product-grid">
           {productHighlights.map((item) => (
             <article key={item.title} className="card">
               <h3>{item.title}</h3>
@@ -651,17 +623,17 @@ export default function Home() {
             <p>先從熱門瘦身健康飲料開始了解，更多產品可進入完整列表。</p>
           </div>
           <div className="section-actions">
-            <div className="section-chip">精選 4 款</div>
+            <div className="section-chip">精選 3 款</div>
             <a className="btn ghost" href="/products/">
               看全部產品
             </a>
           </div>
         </div>
-        <div className="grid">
+        <div className="grid product-grid">
           {products
             .slice()
             .sort((a, b) => productPriority.indexOf(a.id) - productPriority.indexOf(b.id))
-            .slice(0, 4)
+            .slice(0, 3)
             .map((product) => (
             <article key={product.id} className="card product-card">
               <div className="product-image">

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import Topbar from "@/components/Topbar";
 import { productFaqs, productPriority, products } from "../../data/products";
 
 type PageProps = {
@@ -113,6 +114,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       ) : null}
+
+      <Topbar />
 
       <header className="detail-hero">
         <div>
