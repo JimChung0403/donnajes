@@ -18,7 +18,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://donnajls.web.app";
 
 const organizationSchema = {
   "@type": "Organization",
-  name: "婕樂纖生活風格補給",
+  name: "婕樂纖健康瘦身補給",
   url: siteUrl,
   sameAs: ["https://www.instagram.com/donnabubu/"],
   logo: `${siteUrl}/host-donna.svg`,
@@ -26,11 +26,11 @@ const organizationSchema = {
 
 const websiteSchema = {
   "@type": "WebSite",
-  name: "婕樂纖生活風格補給",
+  name: "婕樂纖健康瘦身補給",
   url: siteUrl,
   publisher: {
     "@type": "Organization",
-    name: "婕樂纖生活風格補給",
+    name: "婕樂纖健康瘦身補給",
   },
 };
 
@@ -49,14 +49,14 @@ export const metadata: Metadata = {
     template: "%s｜婕樂纖瘦身健康補給",
   },
   description:
-    "婕樂纖厚焙奶茶主打瘦身與健康減重的日常補給，以健康奶茶與飲料取代含糖飲品，導購至 Donna 的 IG 諮詢。",
+    "婕樂纖厚焙奶茶主打健康瘦身與日常減重補給，少糖飲品取代含糖飲料，上班族在公司也能喝，導購至 Donna 的 IG 諮詢。",
   openGraph: {
     title: "婕樂纖厚焙奶茶｜瘦身健康奶茶飲料",
     description:
-      "婕樂纖厚焙奶茶主打瘦身與健康減重的日常補給，以健康奶茶與飲料取代含糖飲品，導購至 Donna 的 IG 諮詢。",
+      "婕樂纖厚焙奶茶主打健康瘦身與日常減重補給，少糖飲品取代含糖飲料，上班族在公司也能喝，導購至 Donna 的 IG 諮詢。",
     type: "website",
     url: "/",
-    siteName: "婕樂纖生活風格補給",
+    siteName: "婕樂纖健康瘦身補給",
     images: [
       {
         url: "/products/peptide.jpg",
@@ -70,7 +70,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "婕樂纖厚焙奶茶｜瘦身健康奶茶飲料",
     description:
-      "婕樂纖厚焙奶茶主打瘦身與健康減重的日常補給，以健康奶茶與飲料取代含糖飲品，導購至 Donna 的 IG 諮詢。",
+      "婕樂纖厚焙奶茶主打健康瘦身與日常減重補給，少糖飲品取代含糖飲料，上班族在公司也能喝，導購至 Donna 的 IG 諮詢。",
     images: ["/products/peptide.jpg"],
   },
 };

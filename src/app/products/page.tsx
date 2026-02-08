@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     canonical: "/products/",
   },
   openGraph: {
-    title: "瘦身健康飲料產品總覽｜婕樂纖生活風格補給",
+    title: "瘦身健康飲料產品總覽｜婕樂纖健康瘦身補給",
     description:
       "一次瀏覽婕樂纖瘦身與健康減重飲料全系列產品，快速了解各款特色與適用情境。",
     url: "/products/",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "瘦身健康飲料產品總覽｜婕樂纖生活風格補給",
+    title: "瘦身健康飲料產品總覽｜婕樂纖健康瘦身補給",
     description:
       "一次瀏覽婕樂纖瘦身與健康減重飲料全系列產品，快速了解各款特色與適用情境。",
     images: ["/products/peptide.jpg"],

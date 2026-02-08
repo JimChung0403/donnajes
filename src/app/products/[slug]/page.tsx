@@ -124,7 +124,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <p className="lead">{product.detail}</p>
           <div className="tag-row">
             <span className="tag">{product.tone}</span>
-            <span className="tag tag--soft">生活風格推薦</span>
+            <span className="tag tag--soft">上班族公司喝</span>
           </div>
           <div className="detail-actions">
             <a className="btn primary" href="https://www.instagram.com/donnabubu/" target="_blank" rel="noreferrer">

@@ -11,7 +11,7 @@ export default function Topbar() {
           width={200}
           height={56}
         />
-        <span className="brand-sub">Donna生活風格提案</span>
+        <span className="brand-sub">健康瘦身・少糖飲品・上班族公司喝</span>
       </a>
       <nav className="topbar-links">
         <a href="/#story">品牌故事</a>
