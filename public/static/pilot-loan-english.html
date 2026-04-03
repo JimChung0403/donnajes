@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pilot Loan English Guide</title>
+    <meta
+      name="description"
+      content="A mobile-friendly English learning page for personal loan sales conversations with foreign pilots."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #eef4f7;
+        --surface: rgba(255, 255, 255, 0.94);
+        --surface-strong: #ffffff;
+        --text: #163043;
+        --muted: #597080;
+        --line: #d7e3ea;
+        --brand: #0f766e;
+        --brand-strong: #115e59;
+        --brand-soft: #d9f3ef;
+        --accent: #c2410c;
+        --shadow: 0 14px 34px rgba(22, 48, 67, 0.12);
+        --radius: 20px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Noto Sans TC", "PingFang TC", "Segoe UI", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(15, 118, 110, 0.14), transparent 24rem),
+          linear-gradient(180deg, #f7fbfc 0%, #eef4f7 44%, #e8f0f4 100%);
+      }
+
+      .shell {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 18px 14px 28px;
+      }
+
+      .hero {
+        padding: 22px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        border-radius: 28px;
+        background:
+          linear-gradient(135deg, rgba(15, 118, 110, 0.96), rgba(22, 48, 67, 0.95));
+        color: #f4fbfb;
+        box-shadow: var(--shadow);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 1.9rem;
+        line-height: 1.08;
+      }
+
+      .hero p {
+        margin: 0;
+        color: rgba(244, 251, 251, 0.88);
+        line-height: 1.7;
+        font-size: 0.98rem;
+      }
+
+      .tabs {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin: 16px 0;
+        padding: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 22px;
+        background: rgba(238, 244, 247, 0.9);
+        backdrop-filter: blur(18px);
+      }
+
+      .tab-button {
+        border: 0;
+        border-radius: 16px;
+        padding: 12px 10px;
+        background: transparent;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 0.92rem;
+        line-height: 1.35;
+        cursor: pointer;
+      }
+
+      .tab-button.active {
+        background: var(--brand);
+        color: #ffffff;
+        box-shadow: 0 10px 22px rgba(15, 118, 110, 0.24);
+      }
+
+      .panel {
+        display: none;
+      }
+
+      .panel.active {
+        display: block;
+      }
+
+      .section-head {
+        margin: 10px 0 14px;
+        padding: 0 4px;
+      }
+
+      .section-head h2 {
+        margin: 0 0 6px;
+        font-size: 1.2rem;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 0.95rem;
+      }
+
+      .card-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .category-block {
+        margin-bottom: 18px;
+      }
+
+      .category-head {
+        margin: 0 0 12px;
+        padding: 0 4px;
+      }
+
+      .category-title {
+        margin: 0 0 4px;
+        font-size: 1.02rem;
+        font-weight: 800;
+      }
+
+      .category-desc {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+
+      .card {
+        padding: 16px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--surface);
+        box-shadow: 0 10px 24px rgba(22, 48, 67, 0.06);
+      }
+
+      .word-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .term {
+        font-size: 1.08rem;
+        font-weight: 800;
+      }
+
+      .badge {
+        flex: none;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: var(--brand-soft);
+        color: var(--brand-strong);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .label {
+        display: inline-block;
+        margin-bottom: 4px;
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-weight: 800;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .meaning {
+        margin: 0;
+        padding: 10px 12px;
+        border-radius: 14px;
+        background: #eef3f6;
+        font-size: 1rem;
+        line-height: 1.7;
+      }
+
+      .english {
+        margin: 0 0 10px;
+        font-size: 1rem;
+        line-height: 1.65;
+      }
+
+      .chinese {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      .footer {
+        margin-top: 18px;
+        padding: 14px 16px 24px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        text-align: center;
+      }
+
+      @media (min-width: 760px) {
+        .shell {
+          padding: 24px 18px 40px;
+        }
+
+        .hero {
+          padding: 28px 24px;
+        }
+
+        .card-list {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <h1>外籍機師信貸英文學習頁</h1>
+      </header>
+
+      <nav class="tabs" aria-label="Learning tabs">
+        <button class="tab-button active" type="button" data-tab="tab-1">
+          1. 金融單字
+        </button>
+        <button class="tab-button" type="button" data-tab="tab-2">
+          2. 銷售句子
+        </button>
+        <button class="tab-button" type="button" data-tab="tab-3">
+          3. 客戶提問
+        </button>
+      </nav>
+
+      <section id="tab-1" class="panel active">
+        <div class="section-head">
+          <h2>信貸金融相關單字</h2>
+          <p>我把它改成分類版，並精簡成只看詞性與中文意思，讓你在手機上更容易快速查找。</p>
+        </div>
+        <div class="category-block">
+          <div class="category-head">
+            <h3 class="category-title">A. 基本貸款概念</h3>
+            <p class="category-desc">先熟悉最核心的詞，這些是開場、需求確認與初步介紹時最常出現的字。</p>
+          </div>
+          <div class="card-list">
+            <article class="card">
+              <div class="word-top">
+                <div class="term">loan</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">貸款</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">monthly payment</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">每月還款金額</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">repayment term</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">還款期數、還款年限</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">debt consolidation</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">債務整合</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">loan amount</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">貸款金額、可貸額度</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">principal</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">本金</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">installment</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">分期付款、分期</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">unsecured loan</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">無擔保貸款、信用貸款</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">secured loan</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">有擔保貸款</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-head">
+            <h3 class="category-title">B. 費率與費用</h3>
+            <p class="category-desc">這一類是在談數字、比較方案、處理費用疑問時最常會用到。</p>
+          </div>
+          <div class="card-list">
+            <article class="card">
+              <div class="word-top">
+                <div class="term">interest rate</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">利率</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">processing fee</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">手續費</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">APR</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">年百分率、實質年利率</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">origination fee</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">開辦費、申辦手續費</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">fixed rate</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">固定利率</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">variable rate</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">浮動利率、變動利率</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">late fee</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">逾期費、滯納費</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-head">
+            <h3 class="category-title">C. 申請與審核</h3>
+            <p class="category-desc">這一類對應資格判斷、文件說明、送件與核准流程。</p>
+          </div>
+          <div class="card-list">
+            <article class="card">
+              <div class="word-top">
+                <div class="term">credit score</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">信用評分</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">eligible</div>
+                <div class="badge">adjective</div>
+              </div>
+              <p class="meaning">符合資格的</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">application</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">申請件、申請流程</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">approval</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">核准、審核通過</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">supporting documents</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">佐證文件</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">credit report</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">信用報告</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">debt-to-income ratio</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">負債收入比</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">underwriting</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">授信審查、風險審核</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">income proof</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">收入證明</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">borrower</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">借款人</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">lender</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">貸款機構、放款方</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">collateral</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">擔保品、抵押品</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="category-block">
+          <div class="category-head">
+            <h3 class="category-title">D. 還款管理</h3>
+            <p class="category-desc">客戶進一步比較彈性時，會常問到是否能提早清償或如何安排還款。</p>
+          </div>
+          <div class="card-list">
+            <article class="card">
+              <div class="word-top">
+                <div class="term">prepayment</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">提前還款</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">prepayment penalty</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">提前清償違約金</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">due date</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">繳款到期日</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">outstanding balance</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">未清償餘額</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">overdue</div>
+                <div class="badge">adjective</div>
+              </div>
+              <p class="meaning">逾期的</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">default</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">違約、未依約還款</p>
+            </article>
+
+            <article class="card">
+              <div class="word-top">
+                <div class="term">grace period</div>
+                <div class="badge">noun</div>
+              </div>
+              <p class="meaning">寬限期</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="tab-2" class="panel">
+        <div class="section-head">
+          <h2>銷售員如何銷售的英文句子</h2>
+          <p>這裡的句子偏向專業、穩健、可合規使用的說法，避免過度承諾或誤導式推銷。</p>
+        </div>
+        <div class="card-list">
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Hello, I work with personal loan solutions and I would like to see whether any option may fit your needs.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">你好，我負責個人信貸方案，想先了解是否有適合你需求的選項。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">May I ask if you are looking for cash flexibility, debt consolidation, or a lower monthly payment?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">我可以請問你目前是想提高資金彈性、整合債務，還是降低每月還款壓力嗎？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Because you work as a pilot, your income profile may be suitable for certain loan programs, subject to review.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">因為你的職業是機師，你的收入條件可能適合某些貸款方案，但仍要以審核結果為準。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">I can help you estimate the loan amount, the repayment term, and the possible monthly payment.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">我可以協助你預估可貸額度、還款期限，以及可能的每月還款金額。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">If you want, I can first explain the basic terms in simple English before we discuss any application details.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">如果你願意，我可以先用簡單英文說明基本條件，再進一步談申請細節。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">The final rate and approval result will depend on document review and the bank's assessment.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">最終利率與核准結果，會依文件審查與銀行評估而定。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">To save your time, I can tell you in advance which documents are usually required for foreign applicants.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">為了節省你的時間，我可以先告訴你外籍申請人通常需要準備哪些文件。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Our goal is to find a repayment plan that is practical for your current income and schedule.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">我們的目標是找出一個符合你目前收入與工作安排的實際還款方案。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">If you are comparing options, I can help you understand the difference between loan amount, rate, fee, and term.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">如果你正在比較不同方案，我可以幫你理解額度、利率、費用與期數之間的差異。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Please feel free to ask questions, and I will explain the loan structure as clearly as possible.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">有任何問題都可以直接問，我會盡量清楚說明這筆信貸的結構與條件。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">If the program is not suitable for you, I will let you know honestly instead of pushing an application.</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">如果這個方案不適合你，我會誠實告知，而不是硬推你申請。</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Would you like me to give you a quick overview first, or do you prefer to go directly into the numbers?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">你希望我先快速介紹整體方案，還是直接跟你談數字條件？</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="tab-3" class="panel">
+        <div class="section-head">
+          <h2>消費者可能會問的問題句子</h2>
+          <p>把常見提問先背起來，你在電話中比較容易聽懂對方需求，也比較快接話。</p>
+        </div>
+        <div class="card-list">
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">What interest rate can I expect for this loan?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">這筆貸款大概會是什麼利率？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">How much can I borrow based on my income?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">根據我的收入，我大概可以貸多少？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">What documents do I need as a foreign pilot working in Taiwan?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">如果我是來台工作的外籍機師，需要準備哪些文件？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">How long does the approval process usually take?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">通常審核流程要花多久時間？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Are there any processing fees or hidden charges?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">有沒有手續費或其他隱藏費用？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Can I repay the loan early without a penalty?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">我可以提前還款而不用支付違約金嗎？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">What would my monthly payment be if I borrow this amount?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">如果我貸這個金額，我每月大概要還多少？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Can I apply even if I have existing loans or credit card balances?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">如果我目前已經有其他貸款或信用卡餘額，還可以申請嗎？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Will my nationality or visa status affect the application?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">我的國籍或簽證身分會影響申請結果嗎？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Do I need a guarantor for this type of personal loan?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">這種信貸需要保人嗎？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">Can you explain the contract terms in simpler English?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">你可以用更簡單的英文解釋合約條款嗎？</p>
+          </article>
+
+          <article class="card">
+            <div class="label">English</div>
+            <p class="english">If I am not approved, will that affect my future applications?</p>
+            <div class="label">中文解釋</div>
+            <p class="chinese">如果這次沒有核准，會影響我未來的申請嗎？</p>
+          </article>
+        </div>
+      </section>
+
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll(".tab-button");
+      const panels = document.querySelectorAll(".panel");
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const target = button.dataset.tab;
+
+          buttons.forEach((item) => item.classList.remove("active"));
+          panels.forEach((panel) => panel.classList.remove("active"));
+
+          button.classList.add("active");
+          document.getElementById(target).classList.add("active");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      });
+    </script>
+  </body>
+</html>
