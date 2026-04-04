@@ -1,0 +1,104 @@
+{
+  "type": "opinion",
+  "topic": "喜歡和愛的差別",
+  "colors": {
+    "title_black": "#030302",
+    "title_red": "#991D1E",
+    "page_title": "#3E5382",
+    "intro_body": "#12110F",
+    "content_body": "#12110F",
+    "conclusion_body": "#12110F",
+    "emphasis": "#494949",
+    "brand_brown": "#8B7355"
+  },
+  "slides": [
+    {
+      "template": "cover",
+      "lines": [
+        {"text": "喜歡是心動", "style": "title_black"},
+        {"text": "愛是心安", "style": "title_red"}
+      ]
+    },
+    {
+      "template": "content",
+      "blocks": [
+        {"text": "心動很容易", "style": "intro_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "一個眼神", "style": "intro_body"},
+        {"text": "一句剛好的話", "style": "intro_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "就能讓你覺得", "style": "intro_body"},
+        {"text": "他好像是對的人", "style": "intro_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "但心安不一樣", "style": "intro_body"},
+        {"text": "心安需要時間", "style": "intro_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "也許你可以這樣看～", "style": "intro_body"}
+      ]
+    },
+    {
+      "template": "content",
+      "blocks": [
+        {"text": "喜歡是想靠近", "style": "page_title"},
+        {"text": "愛是敢鬆手", "style": "page_title"},
+        {"text": "", "style": "spacer"},
+        {"text": "喜歡一個人的時候", "style": "content_body"},
+        {"text": "你害怕失去", "style": "content_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "愛一個人的時候", "style": "content_body"},
+        {"text": "你相信他會回來", "style": "content_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "差別在於信任", "style": "content_body"}
+      ]
+    },
+    {
+      "template": "content",
+      "blocks": [
+        {"text": "喜歡是濾鏡", "style": "page_title"},
+        {"text": "愛是素顏", "style": "page_title"},
+        {"text": "", "style": "spacer"},
+        {"text": "喜歡的時候", "style": "content_body"},
+        {"text": "你看到的都是優點", "style": "content_body"},
+        {"text": "他遲到你覺得可愛", "style": "content_body"},
+        {"text": "他沉默你覺得深沉", "style": "content_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "愛的時候", "style": "content_body"},
+        {"text": "你看到他的缺點", "style": "content_body"},
+        {"text": "卻還是選擇留下來", "style": "content_body"}
+      ]
+    },
+    {
+      "template": "content",
+      "blocks": [
+        {"text": "喜歡會消退", "style": "page_title"},
+        {"text": "愛會沉澱", "style": "page_title"},
+        {"text": "", "style": "spacer"},
+        {"text": "喜歡是煙火", "style": "content_body"},
+        {"text": "燦爛但短暫", "style": "content_body"},
+        {"text": "愛是炭火", "style": "content_body"},
+        {"text": "不耀眼但持久", "style": "content_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "如果他讓你安心", "style": "content_body"},
+        {"text": "那比心動重要得多", "style": "content_body"}
+      ]
+    },
+    {
+      "template": "content",
+      "blocks": [
+        {"text": "不要急著定義一段關係", "style": "conclusion_body"},
+        {"text": "給自己時間去感受", "style": "conclusion_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "心動讓你開始", "style": "conclusion_body"},
+        {"text": "心安讓你留下", "style": "conclusion_body"},
+        {"text": "", "style": "spacer"},
+        {"text": "能讓你心安的人", "style": "conclusion_body"},
+        {"text": "才值得你認真", "style": "conclusion_body"}
+      ]
+    },
+    {
+      "template": "cta"
+    }
+  ],
+  "caption": "心動是開始\n心安才是留下來的理由\n別急著定義，給自己時間去感受",
+  "hashtags": ["#塔羅占卜", "#感情占卜", "#十月塔羅", "#戀愛觀", "#喜歡跟愛", "#心動不如心安", "#感情經營", "#愛情語錄", "#對的人"]
+}
