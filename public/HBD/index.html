@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Donna 生日快樂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Serif+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f5f1e8;
+    --paper-2: #ebe5d8;
+    --card: #fbf9f4;
+    --ink: #23201c;
+    --muted: #8a8378;
+    --line: #cfc7b8;
+    --accent: #a4583c;
+    --serif: "Noto Serif TC", "Songti TC", "PMingLiU", "Source Han Serif TC", serif;
+    --latin: "Cormorant Garamond", "Noto Serif TC", Georgia, serif;
+    --size: min(86vw, 390px);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
+  html { min-height: 100%; background: var(--paper); }
+  body {
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--ink);
+    background: var(--paper);
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+  }
+  main {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 44px 24px calc(40px + env(safe-area-inset-bottom, 0px));
+    text-align: center;
+  }
+  .screen { width: 100%; max-width: 440px; animation: fadeUp .8s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+  .eyebrow {
+    font-family: var(--latin);
+    font-size: 13px;
+    letter-spacing: .34em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin-top: 14px;
+    font-weight: 500;
+    font-size: clamp(30px, 8.4vw, 40px);
+    letter-spacing: .08em;
+    line-height: 1.35;
+  }
+  h1 .en { font-family: var(--latin); font-style: italic; font-weight: 400; letter-spacing: .02em; font-size: 1.16em; }
+  .rule { width: 36px; height: 1px; background: var(--ink); margin: 22px auto; }
+  .sub { font-size: 15.5px; line-height: 2; letter-spacing: .12em; color: #4a453e; }
+
+  .rules {
+    margin: 30px auto 0;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    text-align: left;
+    font-size: 13.5px;
+    line-height: 2.1;
+    letter-spacing: .06em;
+    color: #4a453e;
+    list-style: none;
+    counter-reset: r;
+  }
+  .rules li { counter-increment: r; display: flex; gap: 14px; }
+  .rules li::before { content: counter(r, decimal-leading-zero); font-family: var(--latin); color: var(--accent); letter-spacing: .08em; }
+
+  .btn {
+    margin-top: 34px;
+    appearance: none;
+    cursor: pointer;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: .5em;
+    text-indent: .5em;
+    color: var(--paper);
+    background: var(--ink);
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    padding: 16px 44px;
+    transition: background .25s ease, color .25s ease, opacity .25s ease;
+  }
+  .btn:hover { background: transparent; color: var(--ink); }
+  .btn:active { opacity: .7; }
+  .btn:disabled { opacity: .35; cursor: default; background: var(--ink); color: var(--paper); }
+
+  /* ---------- 獎項一覽 ---------- */
+  .gallery {
+    margin-top: 34px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 16px;
+    list-style: none;
+    text-align: left;
+  }
+  .gallery li { cursor: pointer; outline: none; }
+  .gallery li:last-child:nth-child(odd) { grid-column: 1 / -1; width: calc(50% - 8px); justify-self: center; }
+  .gallery .frame { display: block; aspect-ratio: 1; overflow: hidden; background: var(--paper-2); }
+  .gallery img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(.98); transition: transform .6s ease, filter .4s ease; }
+  .gallery li:hover img, .gallery li:focus-visible img { transform: scale(1.04); filter: none; }
+  .gallery .no { display: block; margin-top: 10px; font-family: var(--latin); font-size: 12.5px; letter-spacing: .2em; color: var(--accent); }
+  .gallery .nm { display: block; margin-top: 2px; font-size: 14px; letter-spacing: .06em; line-height: 1.6; }
+  .ph { display: grid; place-items: center; width: 100%; height: 100%; background: var(--paper-2); font-family: var(--latin); font-style: italic; color: var(--muted); }
+  .credit { margin-top: 30px; font-family: var(--latin); font-size: 12px; letter-spacing: .12em; color: var(--muted); }
+  .credit a { color: inherit; }
+
+  /* ---------- 轉盤 ---------- */
+  .wheel-wrap { position: relative; width: var(--size); height: var(--size); margin: 30px auto 0; }
+  .pointer {
+    position: absolute; top: -6px; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 22px solid var(--accent);
+    z-index: 3;
+  }
+  .rim { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--ink); }
+  .wheel {
+    position: absolute; inset: 9px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: var(--paper-2);
+    overflow: hidden;
+    transition: transform 5.6s cubic-bezier(.12,.72,.1,1);
+    will-change: transform;
+  }
+  .divider { position: absolute; left: 50%; top: 0; width: 1px; height: 50%; margin-left: -.5px; background: var(--line); transform-origin: 50% 100%; }
+  .slice-label { position: absolute; left: 50%; top: 50%; width: 0; height: 0; }
+  .slice-label span {
+    position: absolute;
+    width: calc(var(--size) * .2);
+    transform: translate(-50%, -50%) translateY(calc(var(--size) * -.292));
+    font-size: calc(var(--size) * .029);
+    letter-spacing: .04em;
+    line-height: 1.4;
+  }
+  .slice-label img, .slice-label .ph {
+    display: block;
+    width: calc(var(--size) * .135);
+    height: calc(var(--size) * .135);
+    margin: 0 auto calc(var(--size) * .012);
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--card);
+    box-shadow: 0 0 0 1px var(--line);
+    filter: saturate(.85);
+  }
+  .hub {
+    position: absolute; left: 50%; top: 50%;
+    width: 9%; height: 9%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: var(--ink);
+    box-shadow: 0 0 0 5px var(--paper), 0 0 0 6px var(--ink);
+    z-index: 2;
+  }
+  .hint { margin-top: 16px; font-size: 12.5px; letter-spacing: .24em; color: var(--muted); min-height: 1.6em; }
+
+  /* ---------- 結果 ---------- */
+  .ticket {
+    margin: 30px auto 0;
+    background: var(--card);
+    border: 1px solid var(--ink);
+    padding: 12px;
+    animation: fadeUp 1s ease both .1s;
+  }
+  .ticket-in { border: 1px solid var(--line); padding: 26px 22px 22px; }
+  .ticket .tag { font-family: var(--latin); font-size: 12px; letter-spacing: .34em; text-transform: uppercase; color: var(--muted); }
+  .ticket .big-ico { margin: 20px auto 0; width: min(72%, 250px); aspect-ratio: 1; overflow: hidden; background: var(--paper-2); }
+  .ticket .big-ico img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .ticket .no { margin-top: 20px; font-family: var(--latin); font-size: 13px; letter-spacing: .24em; color: var(--accent); }
+  .ticket .prize { font-size: clamp(22px, 6.4vw, 27px); font-weight: 500; letter-spacing: .08em; margin-top: 6px; line-height: 1.5; }
+  .ticket .desc { text-wrap: balance; font-size: 14px; line-height: 2; letter-spacing: .08em; margin-top: 10px; color: #4a453e; }
+  .ticket .cut { border-top: 1px solid var(--line); margin: 22px 0 16px; }
+  .ticket .meta { font-size: 12.5px; line-height: 2.1; letter-spacing: .08em; color: var(--muted); text-align: left; }
+  .ticket .meta div { display: flex; justify-content: space-between; gap: 16px; }
+  .ticket .meta span:first-child { flex: none; }
+  .ticket .meta span:last-child { color: var(--ink); text-align: right; text-wrap: balance; }
+  .locked { margin-top: 26px; font-size: 12.5px; letter-spacing: .2em; line-height: 2.2; color: var(--muted); }
+  .locked em { display: block; font-family: var(--latin); font-size: 17px; letter-spacing: .06em; color: var(--ink); }
+
+  #confetti { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5; }
+
+  /* ---------- 獎項彈窗（可左右滑動） ---------- */
+  .pop {
+    position: fixed; inset: 0; z-index: 20;
+    display: grid; grid-template-columns: minmax(0, 1fr); place-items: center;
+    padding: 20px 18px;
+    background: rgba(35,32,28,.55);
+    -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
+    animation: popFade .3s ease both;
+  }
+  @keyframes popFade { from { opacity: 0; } to { opacity: 1; } }
+  .pop-card {
+    position: relative;
+    width: min(100%, 400px);
+    background: var(--card);
+    border: 1px solid var(--ink);
+    padding: 0 0 18px;
+    animation: fadeUp .45s ease both;
+  }
+  .pop-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+  .pop-track::-webkit-scrollbar { display: none; }
+  .pop-slide { flex: 0 0 100%; scroll-snap-align: center; scroll-snap-stop: always; text-align: left; }
+  .pop-slide .frame { display: block; aspect-ratio: 1; overflow: hidden; background: var(--paper-2); }
+  .pop-slide img { display: block; width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; user-select: none; }
+  .pop-slide .txt { padding: 18px 24px 0; }
+  .pop-slide .no { font-family: var(--latin); font-size: 13px; letter-spacing: .24em; color: var(--accent); }
+  .pop-slide h2 { font-size: 21px; font-weight: 500; letter-spacing: .08em; margin-top: 4px; line-height: 1.5; }
+  .pop-slide p { font-size: 13.5px; line-height: 2; letter-spacing: .08em; margin-top: 6px; color: #4a453e; min-height: 4em; }
+  .pop-close, .pop-nav {
+    position: absolute; z-index: 2;
+    appearance: none; cursor: pointer;
+    width: 38px; height: 38px; border-radius: 50%;
+    border: 1px solid var(--ink);
+    background: var(--card); color: var(--ink);
+    font-family: var(--latin); font-size: 20px; line-height: 1;
+    display: grid; place-items: center;
+    transition: background .2s, color .2s, opacity .2s;
+  }
+  .pop-close:hover, .pop-nav:hover { background: var(--ink); color: var(--card); }
+  .pop-close { top: 12px; right: 12px; font-size: 15px; }
+  .pop-nav { top: min(calc(50vw - 38px), 181px); }
+  .pop-nav.prev { left: 12px; } .pop-nav.next { right: 12px; }
+  .pop-nav:disabled { opacity: 0; pointer-events: none; }
+  .pop-foot { display: flex; align-items: center; justify-content: space-between; padding: 12px 24px 0; }
+  .pop-dots { display: flex; gap: 6px; }
+  .pop-dots button {
+    appearance: none; border: 0; padding: 0; cursor: pointer;
+    width: 14px; height: 1px; background: var(--line);
+    transition: background .2s, width .2s;
+    position: relative;
+  }
+  .pop-dots button::after { content: ""; position: absolute; inset: -10px 0; }
+  .pop-dots button.on { width: 26px; background: var(--ink); }
+  .pop-count { font-family: var(--latin); font-size: 13px; letter-spacing: .2em; color: var(--muted); }
+  body.pop-open { overflow: hidden; }
+
+  /* ---------- RWD ---------- */
+  /* 平板以上 */
+  @media (min-width: 720px) {
+    :root { --size: min(60vw, 62vh, 470px); }
+    main { padding: 64px 40px; }
+    .screen { max-width: 620px; }
+    #intro { max-width: 760px; }
+    .gallery { grid-template-columns: repeat(3, 1fr); gap: 34px 26px; }
+    .gallery li:last-child:nth-child(odd) { grid-column: auto; width: auto; justify-self: stretch; }
+    .gallery .nm { font-size: 15px; }
+    .rules { max-width: 460px; font-size: 14.5px; }
+    .sub { font-size: 17px; }
+    .ticket { max-width: 460px; }
+    .ticket-in { padding: 34px 34px 28px; }
+    .pop-card { width: min(100%, 440px); }
+    .pop-nav { top: 201px; }
+  }
+  /* 桌機、橫向手機：轉盤在左、標題與按鈕在右 */
+  @media (min-width: 1024px), (orientation: landscape) and (max-height: 560px) and (min-width: 560px) {
+    #game {
+      max-width: 1040px;
+      display: grid;
+      grid-template-columns: auto minmax(240px, 360px);
+      grid-template-areas: "wheel title" "wheel ctrl";
+      column-gap: clamp(36px, 8vw, 110px);
+      align-items: center;
+      justify-content: center;
+    }
+    #game[hidden] { display: none; }
+    #game .head { grid-area: title; align-self: end; text-align: left; }
+    #game .head .rule { margin-left: 0; }
+    #game .wheel-wrap { grid-area: wheel; margin: 0; }
+    #game .ctrl { grid-area: ctrl; align-self: start; text-align: left; }
+    #game .ctrl .btn { margin-top: 8px; }
+  }
+  @media (min-width: 1024px) {
+    :root { --size: min(44vw, 76vh, 560px); }
+    h1 { font-size: 46px; }
+  }
+  /* 橫向手機 */
+  @media (orientation: landscape) and (max-height: 560px) {
+    :root { --size: min(46vw, 80vh); }
+    main { padding-top: 22px; padding-bottom: 16px; }
+    .ticket .big-ico { width: 120px; }
+    .pop-card { width: min(100%, 560px); }
+    .pop-slide { display: flex; align-items: center; }
+    .pop-slide .frame { flex: 0 0 40%; }
+    .pop-nav { top: 38%; }
+  }
+  /* 很窄的手機 */
+  @media (max-width: 340px) {
+    main { padding-left: 16px; padding-right: 16px; }
+    .btn { padding: 15px 32px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wheel { transition-duration: 1.2s; }
+    .screen, .ticket, .pop-card { animation: none; }
+  }
+</style>
+</head>
+<body>
+<canvas id="confetti"></canvas>
+<main>
+
+  <!-- 1. 開場 -->
+  <section class="screen" id="intro" hidden>
+    <p class="eyebrow">A Birthday Draw</p>
+    <h1><span class="en">Donna</span> 生日快樂</h1>
+    <div class="rule"></div>
+    <p class="sub">今年的禮物，自己的手氣決定。</p>
+    <ul class="gallery" id="gallery"></ul>
+    <ul class="rules">
+      <li>以上獎項都在轉盤上，點選可細看。</li>
+      <li>機會只有一次，抽到什麼就是什麼。</li>
+      <li>深呼吸，準備好了再開始。</li>
+    </ul>
+    <button class="btn" id="btn-start">開始</button>
+    <p class="credit"><a href="img/photo/CREDITS.txt" target="_blank" rel="noopener">Photo credits</a></p>
+  </section>
+
+  <!-- 2. 轉盤 -->
+  <section class="screen" id="game" hidden>
+    <div class="head">
+      <p class="eyebrow">One Chance Only</p>
+      <h1>命運轉盤</h1>
+      <div class="rule"></div>
+    </div>
+    <div class="wheel-wrap">
+      <div class="pointer"></div>
+      <div class="rim"></div>
+      <div class="wheel" id="wheel"></div>
+      <div class="hub"></div>
+    </div>
+    <div class="ctrl">
+      <button class="btn" id="btn-spin">抽獎</button>
+      <p class="hint" id="hint">只有一次機會</p>
+    </div>
+  </section>
+
+  <!-- 3. 結果 -->
+  <section class="screen" id="result" hidden>
+    <p class="eyebrow">For Donna</p>
+    <h1 id="result-title">恭喜</h1>
+    <div class="ticket">
+      <div class="ticket-in">
+        <div class="tag">Birthday Gift Voucher</div>
+        <div class="big-ico" id="r-ico"></div>
+        <div class="no" id="r-no"></div>
+        <div class="prize" id="r-name"></div>
+        <div class="desc" id="r-desc"></div>
+        <div class="cut"></div>
+        <div class="meta">
+          <div><span>抽獎時間</span><span id="r-time"></span></div>
+          <div><span>兌換期限</span><span id="r-exp"></span></div>
+          <div><span>兌換方式</span><span>憑此畫面作為佐證，向男朋友領取</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="locked">結果已鎖定 · 每人限抽一次<em>Happy Birthday, Donna.</em></p>
+  </section>
+
+</main>
+
+<!-- 獎項彈窗 -->
+<div class="pop" id="pop" role="dialog" aria-modal="true" aria-label="獎項介紹" hidden>
+  <div class="pop-card">
+    <button class="pop-close" id="pop-close" aria-label="關閉">✕</button>
+    <button class="pop-nav prev" id="pop-prev" aria-label="上一個">‹</button>
+    <button class="pop-nav next" id="pop-next" aria-label="下一個">›</button>
+    <div class="pop-track" id="pop-track"></div>
+    <div class="pop-foot">
+      <div class="pop-dots" id="pop-dots"></div>
+      <div class="pop-count" id="pop-count"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ================= 設定 ================= */
+  var STORE_KEY = 'bday_lottery_result';
+  var KEEP_SECONDS = 60 * 60 * 24 * 30;       // 紀錄保存 1 個月
+  var RESET_PARAM = 'a';                      // 網址帶 ?a=1 → 清除紀錄重抽一次
+
+  // 順序 = 轉盤上順時針的扇形順序；w = 權重
+  // img：想換照片，把檔案放進 img/photo/ 並改這裡的路徑（建議正方形）
+  var PRIZES = [
+    { w: 1, img: 'img/photo/cash.jpg',     name: '現金 NT$36,000',      label: '現金<br>36,000',     desc: '三萬六千元現金，想怎麼花就怎麼花。' },
+    { w: 0, img: 'img/photo/jeans.jpg',    name: 'UNIQLO 牛仔褲一件',   label: 'UNIQLO<br>牛仔褲',   desc: 'UNIQLO 牛仔褲一件，尺寸妳挑。' },
+    { w: 1, img: 'img/photo/thermage.jpg', name: '鳳凰電波 900 發',     label: '鳳凰電波<br>900 發', desc: '鳳凰電波 900 發療程一次，美美地過生日。' },
+    { w: 0, img: 'img/photo/suitcase.jpg', name: '台積電行李箱',        label: '台積電<br>行李箱',   desc: '台積電行李箱一只，說走就走。' },
+    { w: 1, img: 'img/photo/bag.jpg',      name: '名牌包（上限 3 萬）', label: '名牌包',             desc: '名牌包一個，預算上限 NT$30,000，款式妳挑。' },
+    { w: 0, img: 'img/photo/cosmed.jpg',   name: '康是美洗臉組合',      label: '康是美<br>洗臉組',   desc: '康是美洗臉組合一組，天天洗香香。' },
+    { w: 1, img: 'img/photo/iphone.jpg',   name: 'iPhone Duo',          label: 'iPhone<br>Duo',      desc: '全新 iPhone Duo 一支，顏色妳挑。' },
+    { w: 0, img: 'img/photo/nike.jpg',     name: 'Nike 球鞋',           label: 'Nike<br>球鞋',       desc: 'Nike 球鞋一雙，款式妳挑。' },
+    { w: 1, img: 'img/photo/tsmc.svg',     name: '台積電股票',          label: '台積電<br>股票',     desc: '台積電（2330）股票，一起當股東。' }
+  ];
+  var TONES = ['#f4efe4', '#e9e2d3', '#ded5c2'];
+
+  function z2(n) { return (n < 10 ? '0' : '') + n; }
+  function no(i) { return 'No. ' + z2(i + 1); }
+
+  // 獎項照片：載入失敗時退回編號
+  function prizeVisual(p, i) {
+    var img = document.createElement('img');
+    img.src = p.img; img.alt = p.name; img.draggable = false;
+    img.onerror = function () {
+      var d = document.createElement('div');
+      d.className = 'ph'; d.textContent = z2(i + 1);
+      img.replaceWith(d);
+    };
+    return img;
+  }
+  function framed(p, i) {
+    var f = document.createElement('span');
+    f.className = 'frame';
+    f.appendChild(prizeVisual(p, i));
+    return f;
+  }
+
+  /* ================= 紀錄存取（cookie 為主，localStorage 備援） ================= */
+  function saveResult(data) {
+    var v = encodeURIComponent(JSON.stringify(data));
+    document.cookie = STORE_KEY + '=' + v + '; max-age=' + KEEP_SECONDS + '; path=/; SameSite=Lax';
+    // 備援：直接雙擊開啟 (file://) 時 Chrome 不會保存 cookie
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(data)); } catch (e) {}
+  }
+  function parse(raw) {
+    try {
+      var d = JSON.parse(raw);
+      if (d && Number.isInteger(d.p) && d.p >= 0 && d.p < PRIZES.length &&
+          typeof d.t === 'number' && Date.now() - d.t < KEEP_SECONDS * 1000) return d;
+    } catch (e) {}
+    return null;
+  }
+  function readResult() {
+    var m = document.cookie.match(new RegExp('(?:^|;\\s*)' + STORE_KEY + '=([^;]*)'));
+    var d = m ? parse(decodeURIComponent(m[1])) : null;
+    if (d) return d;
+    try { return parse(localStorage.getItem(STORE_KEY)); } catch (e) { return null; }
+  }
+  function clearResult() {
+    document.cookie = STORE_KEY + '=; max-age=0; path=/; SameSite=Lax';
+    try { localStorage.removeItem(STORE_KEY); } catch (e) {}
+  }
+
+  /* ================= 畫面 ================= */
+  var $ = function (id) { return document.getElementById(id); };
+  function show(id) {
+    ['intro', 'game', 'result'].forEach(function (s) { $(s).hidden = (s !== id); });
+    window.scrollTo(0, 0);
+  }
+  function fmt(ts) {
+    var d = new Date(ts);
+    return d.getFullYear() + '.' + z2(d.getMonth() + 1) + '.' + z2(d.getDate()) + ' ' + z2(d.getHours()) + ':' + z2(d.getMinutes());
+  }
+  function showResult(data, fresh) {
+    var p = PRIZES[data.p];
+    $('result-title').textContent = fresh ? '恭喜' : '妳的生日禮物';
+    $('r-ico').textContent = '';
+    $('r-ico').appendChild(prizeVisual(p, data.p));
+    $('r-no').textContent = no(data.p);
+    $('r-name').textContent = p.name;
+    $('r-desc').textContent = p.desc;
+    $('r-time').textContent = fmt(data.t);
+    $('r-exp').textContent = fmt(data.t + KEEP_SECONDS * 1000).slice(0, 10) + ' 前';
+    show('result');
+    if (fresh) confetti();
+  }
+
+  function buildWheel() {
+    var wheel = $('wheel'), step = 360 / PRIZES.length;
+    wheel.style.background = 'conic-gradient(' + PRIZES.map(function (p, i) {
+      return TONES[i % TONES.length] + ' ' + (i * step) + 'deg ' + ((i + 1) * step) + 'deg';
+    }).join(',') + ')';
+
+    PRIZES.forEach(function (p, i) {
+      var line = document.createElement('i');
+      line.className = 'divider';
+      line.style.transform = 'rotate(' + (i * step) + 'deg)';
+      wheel.appendChild(line);
+
+      var el = document.createElement('div');
+      el.className = 'slice-label';
+      el.style.transform = 'rotate(' + (i * step + step / 2) + 'deg)';
+      var span = document.createElement('span');
+      span.innerHTML = p.label;
+      span.insertBefore(prizeVisual(p, i), span.firstChild);
+      el.appendChild(span);
+      wheel.appendChild(el);
+
+      // 開場的獎項卡片
+      var li = document.createElement('li');
+      li.tabIndex = 0;
+      li.setAttribute('role', 'button');
+      li.appendChild(framed(p, i));
+      var n = document.createElement('span'); n.className = 'no'; n.textContent = no(i);
+      var nm = document.createElement('span'); nm.className = 'nm'; nm.textContent = p.name;
+      li.appendChild(n); li.appendChild(nm);
+      li.addEventListener('click', function () { openPop(i); });
+      li.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPop(i); }
+      });
+      $('gallery').appendChild(li);
+
+      // 彈窗的每一頁
+      var slide = document.createElement('div');
+      slide.className = 'pop-slide';
+      slide.appendChild(framed(p, i));
+      var txt = document.createElement('div'); txt.className = 'txt';
+      var sn = document.createElement('div'); sn.className = 'no'; sn.textContent = no(i);
+      var h2 = document.createElement('h2'); h2.textContent = p.name;
+      var ds = document.createElement('p');  ds.textContent = p.desc;
+      txt.appendChild(sn); txt.appendChild(h2); txt.appendChild(ds);
+      slide.appendChild(txt);
+      $('pop-track').appendChild(slide);
+
+      var dot = document.createElement('button');
+      dot.setAttribute('aria-label', p.name);
+      dot.addEventListener('click', function () { goPop(i, true); });
+      $('pop-dots').appendChild(dot);
+    });
+  }
+
+  /* ================= 獎項彈窗 ================= */
+  var popIndex = 0, popOpener = null;
+  function popSync() {
+    var track = $('pop-track');
+    var i = Math.round(track.scrollLeft / track.clientWidth);
+    popIndex = Math.max(0, Math.min(PRIZES.length - 1, i));
+    Array.prototype.forEach.call($('pop-dots').children, function (d, k) { d.classList.toggle('on', k === popIndex); });
+    $('pop-prev').disabled = popIndex === 0;
+    $('pop-next').disabled = popIndex === PRIZES.length - 1;
+    $('pop-count').textContent = z2(popIndex + 1) + ' / ' + z2(PRIZES.length);
+  }
+  function goPop(i, smooth) {
+    var track = $('pop-track');
+    i = Math.max(0, Math.min(PRIZES.length - 1, i));
+    track.scrollTo({ left: i * track.clientWidth, behavior: smooth ? 'smooth' : 'auto' });
+    if (!smooth) popSync();
+  }
+  function openPop(i) {
+    popOpener = document.activeElement;
+    $('pop').hidden = false;
+    document.body.classList.add('pop-open');
+    goPop(i, false);
+    $('pop-close').focus();
+  }
+  function closePop() {
+    $('pop').hidden = true;
+    document.body.classList.remove('pop-open');
+    if (popOpener && popOpener.focus) popOpener.focus();
+  }
+  function initPop() {
+    var track = $('pop-track'), raf = 0;
+    track.addEventListener('scroll', function () {
+      cancelAnimationFrame(raf); raf = requestAnimationFrame(popSync);
+    });
+    $('pop-prev').addEventListener('click', function () { goPop(popIndex - 1, true); });
+    $('pop-next').addEventListener('click', function () { goPop(popIndex + 1, true); });
+    $('pop-close').addEventListener('click', closePop);
+    $('pop').addEventListener('click', function (e) { if (e.target === this) closePop(); });
+    document.addEventListener('keydown', function (e) {
+      if ($('pop').hidden) return;
+      if (e.key === 'Escape') closePop();
+      else if (e.key === 'ArrowLeft') goPop(popIndex - 1, true);
+      else if (e.key === 'ArrowRight') goPop(popIndex + 1, true);
+    });
+    window.addEventListener('resize', function () { if (!$('pop').hidden) goPop(popIndex, false); });
+
+    // 桌機：滑鼠拖曳也能左右滑
+    var down = false, startX = 0, startLeft = 0;
+    track.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      down = true; startX = e.clientX; startLeft = track.scrollLeft;
+      track.style.scrollSnapType = 'none'; track.style.cursor = 'grabbing';
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (down) track.scrollLeft = startLeft - (e.clientX - startX);
+    });
+    window.addEventListener('pointerup', function (e) {
+      if (!down) return;
+      down = false; track.style.cursor = '';
+      var dx = e.clientX - startX, target = popIndex;
+      if (Math.abs(dx) > 40) target = Math.round(startLeft / track.clientWidth) + (dx < 0 ? 1 : -1);
+      goPop(target, true);
+      setTimeout(function () { track.style.scrollSnapType = ''; }, 350);
+    });
+  }
+
+  /* ================= 抽獎 ================= */
+  function pickIndex() {
+    var total = PRIZES.reduce(function (a, p) { return a + p.w; }, 0);
+    var r = (window.crypto && crypto.getRandomValues)
+      ? crypto.getRandomValues(new Uint32Array(1))[0] / 4294967296
+      : Math.random();
+    r *= total;
+    for (var i = 0; i < PRIZES.length; i++) {
+      if (PRIZES[i].w > 0 && (r -= PRIZES[i].w) < 0) return i;
+    }
+    for (var j = PRIZES.length - 1; j >= 0; j--) if (PRIZES[j].w > 0) return j;   // 浮點數保險
+  }
+
+  var spinning = false;
+  function spin() {
+    if (spinning) return;
+    // 其他分頁可能已經抽過 → 直接顯示既有結果
+    var existing = readResult();
+    if (existing) { showResult(existing, false); return; }
+
+    spinning = true;
+    $('btn-spin').disabled = true;
+    $('hint').textContent = '轉動中';
+
+    // 先決定結果並「立刻」寫入紀錄，中途重新整理也無法重抽
+    var data = { p: pickIndex(), t: Date.now() };
+    saveResult(data);
+
+    var step = 360 / PRIZES.length;
+    var center = data.p * step + step / 2;                 // 該扇形中心角度
+    var jitter = (Math.random() - 0.5) * step * 0.7;       // 不要每次都停正中間
+    var target = 360 * 7 - center + jitter;                // 讓該扇形轉到正上方指針處
+
+    var wheel = $('wheel'), done = false;
+    function finish() {
+      if (done) return; done = true;
+      setTimeout(function () { showResult(data, true); }, 800);
+    }
+    wheel.addEventListener('transitionend', finish, { once: true });
+    setTimeout(finish, 6500);                              // 保險
+    requestAnimationFrame(function () {
+      wheel.style.transform = 'rotate(' + target + 'deg)';
+    });
+  }
+
+  /* ================= 紙片 ================= */
+  function confetti() {
+    var cv = $('confetti'), ctx = cv.getContext('2d');
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var W = cv.width = innerWidth * dpr, H = cv.height = innerHeight * dpr;
+    var colors = ['#23201c', '#a4583c', '#8d9a7f', '#cfc7b8', '#c9a26b'];
+    var parts = [];
+    for (var i = 0; i < 90; i++) {
+      parts.push({
+        x: Math.random() * W, y: -Math.random() * H * 0.6,
+        w: (3 + Math.random() * 5) * dpr, h: (8 + Math.random() * 10) * dpr,
+        vx: (Math.random() - 0.5) * 1.6 * dpr, vy: (1.4 + Math.random() * 2.6) * dpr,
+        r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.16,
+        c: colors[i % colors.length]
+      });
+    }
+    var start = performance.now();
+    (function frame(now) {
+      ctx.clearRect(0, 0, W, H);
+      var alive = false;
+      parts.forEach(function (p) {
+        p.x += p.vx; p.y += p.vy; p.r += p.vr; p.vy += 0.012 * dpr;
+        if (p.y < H + 40) alive = true;
+        ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r);
+        ctx.fillStyle = p.c; ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h * Math.abs(Math.cos(p.r)));
+        ctx.restore();
+      });
+      if (alive && now - start < 10000) requestAnimationFrame(frame);
+      else ctx.clearRect(0, 0, W, H);
+    })(start);
+  }
+
+  /* ================= 啟動 ================= */
+  // ?a=1 → 清除紀錄，並把參數從網址拿掉（否則每次重新整理都會再被清除一次）
+  var qs = new URLSearchParams(location.search);
+  if (qs.get(RESET_PARAM) === '1') {
+    clearResult();
+    qs.delete(RESET_PARAM);
+    var rest = qs.toString();
+    history.replaceState(null, '', location.pathname + (rest ? '?' + rest : '') + location.hash);
+  }
+
+  buildWheel();
+  initPop();
+  $('btn-start').addEventListener('click', function () { show('game'); });
+  $('btn-spin').addEventListener('click', spin);
+
+  var saved = readResult();
+  if (saved) showResult(saved, false); else show('intro');
+})();
+</script>
+</body>
+</html>
