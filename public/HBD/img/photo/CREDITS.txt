@@ -1,12 +1,10 @@
 Image sources (all cropped / recomposed to square).
 
 Openly licensed
-cash.jpg      "Taiwan Dollars" — kalleboo, CC BY 2.0 (NT$1000 note cropped out, placed on plain background)
-              https://www.flickr.com/photos/82365211@N00/9107214664
 bag.jpg       Chanel 2.55 — Liu Wen Cheng, CC BY-SA 2.0
               https://commons.wikimedia.org/wiki/File:Chanel_2.55.jpg
-jeans.jpg     Uniqlo jeans — Martin Howard, CC BY 2.0
-              https://commons.wikimedia.org/wiki/File:Uniqlo_jeans.jpg
+jeans.jpg     UNIQLO logo (public-domain text logo; UNIQLO is a trademark of Fast Retailing Co., Ltd.)
+              https://commons.wikimedia.org/wiki/File:UNIQLO_logo.svg
 nike.jpg      Nike Air Force 1 white on white — HI 622, CC BY-SA 4.0
               https://commons.wikimedia.org/wiki/File:Nike_air_Force_1_white_on_white.jpg
 suitcase.jpg  Rimowa Koffer Topas-Serie — 1971markus, CC BY-SA 4.0
@@ -16,6 +14,8 @@ cosmed.jpg    Cosmed Jiale Store 20211031 — Solomon203, CC BY-SA 4.0
 tsmc.svg      Original illustration made for this page. The line is decorative, not real 2330 price data.
 
 Copyrighted — used here for a private birthday page only
+cash.jpg      NT$1000 banknote scan (three copies fanned out), via banknote.ws
+              http://www.banknote.ws/COLLECTION/countries/ASI/TWN/TWN1997.htm
 iphone.jpg    iPhone Duo press image © Apple Inc.
               https://www.apple.com/newsroom/2026/09/apple-unveils-iphone-duo/
 thermage.jpg  Thermage FLX 鳳凰電波 advertising poster © Solta Medical, via 群英整形外科診所

@@ -299,8 +299,11 @@
     .pop-nav { top: 38%; }
   }
   /* 矮的直向手機：讓抽選盤與按鈕盡量同屏 */
-  @media (orientation: portrait) and (max-height: 700px) {
-    :root { --size: min(86vw, 52vh); }
+  @media (orientation: portrait) and (max-width: 719px) and (min-height: 821px) {
+    :root { --size: min(86vw, calc((100vh - 375px) / 1.06)); --size: min(86vw, calc((100dvh - 375px) / 1.06)); }
+  }
+  @media (orientation: portrait) and (max-height: 820px) and (max-width: 719px) {
+    :root { --size: min(86vw, calc((100vh - 300px) / 1.06)); --size: min(86vw, calc((100dvh - 300px) / 1.06)); }
     #game .eyebrow { display: none; }
     #game h1 { margin-top: 0; font-size: 26px; }
     #game .rule { margin: 12px auto; }
@@ -409,9 +412,9 @@
     { w: 0, img: 'img/photo/jeans.jpg',    name: 'UNIQLO 牛仔褲一件',   short: 'UNIQLO 牛仔褲',   desc: 'UNIQLO 牛仔褲一件，尺寸妳挑。' },
     { w: 1, img: 'img/photo/thermage.jpg', name: '鳳凰電波 900 發',     short: '鳳凰電波 900 發', desc: '鳳凰電波 900 發療程一次，美美地過生日。' },
     { w: 0, img: 'img/photo/suitcase.jpg', name: '台積電行李箱',        short: '台積電行李箱',   desc: '台積電行李箱一只，說走就走。' },
-    { w: 1, img: 'img/photo/bag.jpg',      name: '名牌包（上限 3 萬）', short: '名牌包 3 萬',             desc: '名牌包一個，預算上限 NT$30,000，款式妳挑。' },
-    { w: 0, img: 'img/photo/cosmed.jpg',   name: '康是美洗臉組合',      short: '康是美洗臉組',   desc: '康是美洗臉組合一組，天天洗香香。' },
     { w: 1, img: 'img/photo/iphone.jpg',   name: 'iPhone Duo',          short: 'iPhone Duo',      desc: '全新 iPhone Duo 一支，顏色妳挑。' },
+    { w: 0, img: 'img/photo/cosmed.jpg',   name: '康是美洗臉組合',      short: '康是美洗臉組',   desc: '康是美洗臉組合一組，天天洗香香。' },
+    { w: 1, img: 'img/photo/bag.jpg',      name: '名牌包（上限 3 萬）', short: '名牌包 3 萬',             desc: '名牌包一個，預算上限 NT$30,000，款式妳挑。' },
     { w: 0, img: 'img/photo/nike.jpg',     name: 'Nike 球鞋',           short: 'Nike 球鞋',       desc: 'Nike 球鞋一雙，款式妳挑。' },
     { w: 1, img: 'img/photo/tsmc.svg',     name: '台積電股票',          short: '台積電股票',     desc: '台積電（2330）股票，一起當股東。' }
   ];
