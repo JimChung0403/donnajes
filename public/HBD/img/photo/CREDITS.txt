@@ -3,7 +3,7 @@ Image sources (all cropped / recomposed to square).
 Openly licensed
 bag.jpg       Chanel 2.55 — Liu Wen Cheng, CC BY-SA 2.0
               https://commons.wikimedia.org/wiki/File:Chanel_2.55.jpg
-jeans.jpg     UNIQLO logo (public-domain text logo; UNIQLO is a trademark of Fast Retailing Co., Ltd.)
+uniqlo.jpg    UNIQLO logo (public-domain text logo; UNIQLO is a trademark of Fast Retailing Co., Ltd.)
               https://commons.wikimedia.org/wiki/File:UNIQLO_logo.svg
 nike.jpg      Nike Air Force 1 white on white — HI 622, CC BY-SA 4.0
               https://commons.wikimedia.org/wiki/File:Nike_air_Force_1_white_on_white.jpg
@@ -14,7 +14,7 @@ cosmed.jpg    Cosmed Jiale Store 20211031 — Solomon203, CC BY-SA 4.0
 tsmc.svg      Original illustration made for this page. The line is decorative, not real 2330 price data.
 
 Copyrighted — used here for a private birthday page only
-cash.jpg      NT$1000 banknote scan (three copies fanned out), via banknote.ws
+cash-1000.jpg NT$1000 banknote scan (three copies fanned out), via banknote.ws
               http://www.banknote.ws/COLLECTION/countries/ASI/TWN/TWN1997.htm
 iphone.jpg    iPhone Duo press image © Apple Inc.
               https://www.apple.com/newsroom/2026/09/apple-unveils-iphone-duo/
