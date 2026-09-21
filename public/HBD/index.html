@@ -129,7 +129,7 @@
     list-style: none;
     text-align: left;
   }
-  .tile { position: relative; transition: opacity .5s ease; }
+  .tile { position: relative; transition: opacity .5s ease; touch-action: manipulation; -webkit-user-select: none; user-select: none; }
   .tile .frame {
     display: block; position: relative;
     aspect-ratio: 1; overflow: hidden;
@@ -502,6 +502,7 @@
       tile.appendChild(tn); tile.appendChild(tm);
       $('board').appendChild(tile);
       tiles.push(tile);
+      tile.addEventListener('pointerdown', function () { countTap(i); });
 
       // 開場的獎項卡片
       var li = document.createElement('li');
@@ -635,16 +636,27 @@
     tiles.forEach(function (t, k) { t.classList.toggle('on', k === i); });
   }
 
-  // 亮格在禮物之間亂跳，越跳越慢；倒數第二下故意停在別格，最後才落在真正的結果
-  function buildPath(winner, hops) {
-    var path = [], prev = -1, n = PRIZES.length;
-    for (var k = 0; k < hops; k++) {
-      var i;
-      do { i = Math.floor(Math.random() * n); } while (i === prev || (k >= hops - 2 && i === winner));
-      path.push(i); prev = i;
-    }
-    path.push(winner);
-    return path;
+  // 抽選進行中，在某一格上點滿 TAP_GOAL 下 → 最後停在那一格；多格達標取次數最多的（同數取最後點的）
+  var TAP_GOAL = 5;
+  var taps = {}, lastTap = -1, tapOpen = false;
+  function countTap(i) {
+    if (!tapOpen) return;
+    taps[i] = (taps[i] || 0) + 1;
+    lastTap = i;
+  }
+  function tappedChoice() {
+    var best = -1, bestN = 0;
+    Object.keys(taps).forEach(function (k) {
+      var n = taps[k], idx = +k;
+      if (n >= TAP_GOAL && (n > bestN || (n === bestN && idx === lastTap))) { best = idx; bestN = n; }
+    });
+    return best;
+  }
+
+  function randomOther(avoid) {
+    var i;
+    do { i = Math.floor(Math.random() * PRIZES.length); } while (avoid.indexOf(i) !== -1);
+    return i;
   }
 
   var spinning = false;
@@ -662,23 +674,50 @@
     // 先決定結果並「立刻」寫入紀錄，中途重新整理也無法重抽
     var data = { p: pickIndex(), t: Date.now() };
     saveResult(data);
+    taps = {}; lastTap = -1; tapOpen = true;
 
     var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
     var hops = reduce ? 8 : 30;
-    var path = buildPath(data.p, hops);
     var delay = reduce ? 140 : 60, ratio = reduce ? 1.2 : 1.08;
+    var current = -1;
 
-    (function step(k) {
-      light(path[k]);
-      var last = k === path.length - 1;
-      if (last) { land(data); return; }
+    function tick() {
       blip(880 + Math.random() * 60, 0.05, 0.035);
       if (navigator.vibrate) { try { navigator.vibrate(6); } catch (e) {} }
-      var wait = delay;
-      delay *= ratio;
-      if (k === path.length - 2) { wait = 1100; $('hint').textContent = '……'; }   // 最後一下前的停頓
-      setTimeout(function () { step(k + 1); }, wait);
+    }
+
+    // 亮格在禮物之間亂跳，越跳越慢；倒數第二下故意停在別格，最後才落在真正的結果
+    (function step(k) {
+      var nearEnd = k >= hops - 2;
+      current = randomOther(nearEnd ? [current, data.p] : [current]);
+      light(current);
+      tick();
+      if (k < hops - 1) {
+        var wait = delay; delay *= ratio;
+        setTimeout(function () { step(k + 1); }, wait);
+        return;
+      }
+      $('hint').textContent = '……';                        // 最後一下前的停頓
+      setTimeout(finalHop, 1100);
     })(0);
+
+    function finalHop() {
+      tapOpen = false;
+      var chosen = tappedChoice();
+      if (chosen !== -1 && chosen !== data.p) {
+        data.p = chosen;
+        saveResult(data);
+      }
+      if (current === data.p) {
+        // 指定的格子剛好就是停頓的那格 → 先跳開一下再落回來
+        current = randomOther([current]);
+        light(current); tick();
+        setTimeout(function () { light(data.p); land(data); }, 420);
+        return;
+      }
+      light(data.p);
+      land(data);
+    }
   }
 
   function land(data) {
